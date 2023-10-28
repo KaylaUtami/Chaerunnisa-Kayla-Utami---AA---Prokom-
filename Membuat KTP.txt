@@ -1,0 +1,65 @@
+# Fungsi pertama: Mengumpulkan data pribadi pemohon KTP
+def fungsi_pertama():
+    print("Fungsi Pertama - Mengumpulkan data pribadi pemohon KTP")
+    
+    data_pribadi = {}
+    nama = input("Masukkan nama lengkap: ")
+    alamat = input("Masukkan alamat: ")
+    tanggal_lahir = input("Masukkan tanggal lahir (DD/MM/YYYY): ")
+    
+    # Percabangan: Memeriksa apakah data pribadi valid
+    if not (nama and alamat and tanggal_lahir):
+        print("Data pribadi tidak lengkap. Pengajuan KTP tidak dapat dilanjutkan.")
+        return None
+    
+    data_pribadi['Nama'] = nama
+    data_pribadi['Alamat'] = alamat
+    data_pribadi['Tanggal Lahir'] = tanggal_lahir
+    
+    return data_pribadi
+
+# Fungsi kedua: Mengumpulkan data tambahan pemohon KTP
+def fungsi_kedua(data_pribadi):
+    print("Fungsi Kedua - Mengumpulkan data tambahan pemohon KTP")
+    
+    if data_pribadi is None:
+        print("Data pribadi tidak lengkap. Pengajuan KTP tidak dapat dilanjutkan.")
+        return None
+    
+    data_tambahan = {}
+    nik = input("Masukkan Nomor Induk Kependudukan (NIK): ")
+    jenis_kelamin = input("Masukkan jenis kelamin (Laki-laki/Perempuan): ")
+    
+    # Percabangan: Memeriksa apakah data tambahan valid
+    if not (nik and jenis_kelamin):
+        print("Data tambahan tidak lengkap. Pengajuan KTP tidak dapat dilanjutkan.")
+        return None
+    
+    data_tambahan['NIK'] = nik
+    data_tambahan['Jenis Kelamin'] = jenis_kelamin
+    
+    return data_tambahan
+
+# Fungsi ketiga: Mencetak KTP
+def fungsi_ketiga(data_pribadi, data_tambahan):
+    print("Fungsi Ketiga - Mencetak Kartu Tanda Penduduk (KTP)")
+    
+    if data_pribadi is None or data_tambahan is None:
+        print("Data pengajuan KTP tidak lengkap. KTP tidak dapat dicetak.")
+        return
+    
+    print("Kartu Tanda Penduduk (KTP):")
+    print(f"Nama: {data_pribadi['Nama']}")
+    print(f"Alamat: {data_pribadi['Alamat']}")
+    print(f"Tanggal Lahir: {data_pribadi['Tanggal Lahir']}")
+    print(f"NIK: {data_tambahan['NIK']}")
+    print(f"Jenis Kelamin: {data_tambahan['Jenis Kelamin']}")
+
+# Memulai program dengan menjalankan fungsi pertama
+data_pribadi = fungsi_pertama()
+if data_pribadi is not None:
+    data_tambahan = fungsi_kedua(data_pribadi)
+    fungsi_ketiga(data_pribadi, data_tambahan)
+else:
+    print("Pengajuan KTP tidak dapat dilanjutkan karena data tidak lengkap.")
+
